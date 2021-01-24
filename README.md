@@ -66,3 +66,29 @@ private void ConfigureMeeting(ServiceConfigurationContext context)
     });
 }
 ```
+
+5. 如果要运行 Sample，请将 `Tubumu.Abp.Meeting.csproj` 修改如下。
+
+``` xml
+    <ItemGroup>
+        <PackageReference Include="Tubumu.Mediasoup" Version="1.0.3" />
+        <PackageReference Include="Tubumu.Mediasoup.Executable" Version="1.0.3" />
+        <PackageReference Include="Tubumu.Mediasoup.Common" Version="1.0.3" />
+        <PackageReference Include="Tubumu.Meeting.Server" Version="1.0.3" />
+        <PackageReference Include="Tubumu.Core" Version="1.0.3" />
+        <PackageReference Include="Volo.Abp.MultiTenancy" Version="4.1.2" />
+        <PackageReference Include="Volo.Abp.AspNetCore" Version="4.1.2" />
+    </ItemGroup>
+
+    <!--
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Tubumu.Mediasoup\Tubumu.Mediasoup.csproj" />
+      <ProjectReference Include="..\..\..\..\Tubumu.Mediasoup.Executable\Tubumu.Mediasoup.Executable.csproj" />
+      <ProjectReference Include="..\..\..\..\Tubumu.Mediasoup.Common\Tubumu.Mediasoup.Common.csproj" />
+      <ProjectReference Include="..\..\..\..\Tubumu.Meeting.Server\Tubumu.Meeting.Server.csproj" />
+      <ProjectReference Include="..\..\..\..\Tubumu.Core\Tubumu.Core.csproj" />
+    </ItemGroup>
+    -->
+
+```
+
