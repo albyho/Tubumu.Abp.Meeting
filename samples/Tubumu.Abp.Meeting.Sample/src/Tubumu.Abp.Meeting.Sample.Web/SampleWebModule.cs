@@ -77,6 +77,7 @@ namespace Tubumu.Abp.Meeting.Sample.Web
                 );
             });
 
+            // 配置点：2
             context.Services.PreConfigure<AbpJsonOptions>(options =>
             {
                 options.UseHybridSerializer = false;
@@ -97,9 +98,8 @@ namespace Tubumu.Abp.Meeting.Sample.Web
             ConfigureNavigationServices();
             ConfigureAutoApiControllers();
             ConfigureSwaggerServices(context.Services);
-            // 配置点：2
+            // 配置点：3
             ConfigureMeeting(context);
-
         }
 
         private void ConfigureMeeting(ServiceConfigurationContext context)
