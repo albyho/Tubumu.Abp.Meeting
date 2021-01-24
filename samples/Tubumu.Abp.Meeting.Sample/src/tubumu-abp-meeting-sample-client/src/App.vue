@@ -6,10 +6,7 @@
           <el-aside width="400px">            
             <div class="demo-block">
               <el-form ref="joinForm" :inline="true" label-width="80px" size="mini">
-                <el-form-item label="Peer:">
-                  <el-select v-model="joinForm.peerId" :disabled="joinForm.isJoined" clearable placeholder="请选择">
-                    <el-option :label="`Peer ${index}`" v-for="(item, index) in accessTokens" :key="item" :value="index"></el-option>
-                  </el-select>
+                <el-form-item label="Connect:">
                 </el-form-item>
                 <el-form-item>
                   <el-button type="primary" @click="onJoin">{{(!joinForm.isJoined ? "Join" : "Leave")}}</el-button>
@@ -30,6 +27,8 @@
             </div>
             <div class="demo-block" v-if="joinForm.isJoined&&roomForm.isJoinedRoom">
               <el-form ref="peersForm" :model="peersForm" label-width="80px" size="mini">
+                <el-form-item label="Peers:">
+                </el-form-item>
                 <el-form-item>
                   <el-table
                     ref="singleTable"
@@ -135,7 +134,6 @@ export default {
       dataProducer: null,
       dataConsumers: new Map(),
       joinForm: {
-        peerId: null,
         isJoined: false
       },
       roomForm: {
@@ -165,36 +163,15 @@ export default {
         "Room 7",
         "Room 8",
         "Room 9"
-      ],
-      accessTokens: [
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMCIsIm5iZiI6MTU4NDM0OTA0NiwiZXhwIjoxNTg2OTQxMDQ2LCJpc3MiOiJpc3N1ZXIiLCJhdWQiOiJhdWRpZW5jZSJ9.lX6ff6ZFNb4z-4otDcUAZ48qwD8rZAGM5_Rt4HlHgug',
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMSIsIm5iZiI6MTU4NDM0OTA0NiwiZXhwIjoxNTg2OTQxMDQ2LCJpc3MiOiJpc3N1ZXIiLCJhdWQiOiJhdWRpZW5jZSJ9.5w00ixg06pRPxcdbtbmRVI6Wy_Ta9qsSJc3D7PE3chQ',
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMiIsIm5iZiI6MTU4NDM0OTA0NiwiZXhwIjoxNTg2OTQxMDQ2LCJpc3MiOiJpc3N1ZXIiLCJhdWQiOiJhdWRpZW5jZSJ9.q2tKWUa6i4u0VpZDhA8Fw92NoV_g9YQeWD-OeF7fAvU',
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMyIsIm5iZiI6MTU4NDM0OTA0NiwiZXhwIjoxNTg2OTQxMDQ2LCJpc3MiOiJpc3N1ZXIiLCJhdWQiOiJhdWRpZW5jZSJ9.ekjd10Bortc1q34Ani1F_Gw9KQwS4qRFIU715pE1lGo',
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiNCIsIm5iZiI6MTU4NDM0OTA0NiwiZXhwIjoxNTg2OTQxMDQ2LCJpc3MiOiJpc3N1ZXIiLCJhdWQiOiJhdWRpZW5jZSJ9.6hZ4GtamurlemceCV7I5vT-UQkbszRxys5h8QOiOhcE',
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiNSIsIm5iZiI6MTU4NDM0OTA0NiwiZXhwIjoxNTg2OTQxMDQ2LCJpc3MiOiJpc3N1ZXIiLCJhdWQiOiJhdWRpZW5jZSJ9.nV4fr0tYGDR7zsykNoFYERdVSUPSqmhGdOkPqBjK1qw',
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiNiIsIm5iZiI6MTU4NDM0OTA0NiwiZXhwIjoxNTg2OTQxMDQ2LCJpc3MiOiJpc3N1ZXIiLCJhdWQiOiJhdWRpZW5jZSJ9.ftPY4GXCyyuaIaeihsexS99iluUCSZo6XSUOfdf_gGs',
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiNyIsIm5iZiI6MTU4NDM0OTA0NiwiZXhwIjoxNTg2OTQxMDQ2LCJpc3MiOiJpc3N1ZXIiLCJhdWQiOiJhdWRpZW5jZSJ9.V_S8YRRCOWP5-TG8S_cvlWdaXEKpsgY34lt3FiCgqGw',
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiOCIsIm5iZiI6MTU4NDM0OTA0NiwiZXhwIjoxNTg2OTQxMDQ2LCJpc3MiOiJpc3N1ZXIiLCJhdWQiOiJhdWRpZW5jZSJ9.fl1jA6DEQyXwIb6KRDUlEthR2G7-Je3OiaZHJ3tzk9M',
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiOSIsIm5iZiI6MTU4NDM0OTA0NiwiZXhwIjoxNTg2OTQxMDQ2LCJpc3MiOiJpc3N1ZXIiLCJhdWQiOiJhdWRpZW5jZSJ9.3Hnnkoxe52L7joy99dXkcIjHtz9FUitf4BGYCYjyKdE'
-        ]
+      ]
     };
   },
   async mounted() {
-    const { peerId, peerid } = querystring.parse(location.search.replace('?', ''));
-    this.joinForm.peerId = peerId || peerid;
-    if(this.joinForm.peerId) {
-      this.joinForm.peerId = parseInt(this.joinForm.peerId);
-    }
-
     const { roomId, roomid } = querystring.parse(location.search.replace('?', ''));
     this.roomForm.roomId = roomId || roomid;
     if(this.roomForm.roomId) {
       this.roomForm.roomId = parseInt(this.roomForm.roomId);
     }
-
-    // For Testing
-    // this.form.produce = this.joinForm.peerId !== '0' && this.joinForm.peerId !== '1';
   },
   methods: {
     async onJoin() {
@@ -216,7 +193,7 @@ export default {
         this.connection = new signalR.HubConnectionBuilder()
           .withUrl(
             `${host}/signalr-hubs/meeting`, {
-              accessTokenFactory: () => this.accessTokens[this.joinForm.peerId],
+              //accessTokenFactory: () => this.accessTokens[this.joinForm.peerId],
               //skipNegotiation: true,
               //transport: signalR.HttpTransportType.WebSockets,
             }
