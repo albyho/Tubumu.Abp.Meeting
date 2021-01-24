@@ -38,13 +38,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
     <PackageReference Include="Serilog.Sinks.Async" Version="1.4.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2"><IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+<PrivateAssets>all</PrivateAssets>
+</PackageReference>
     <PackageReference Include="Volo.Abp.AspNetCore.SignalR" Version="4.1.2" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson" Version="5.0.2" />
-    <PackageReference Include="Tubumu.Mediasoup.Executable" Version="1.0.5" />
   </ItemGroup>
 
   <ItemGroup>
