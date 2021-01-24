@@ -32,6 +32,41 @@ internal static IHostBuilder CreateHostBuilder(string[] args) =>
 4. 修改 `XXXWebModule.cs` 的 `ConfigureServices` 方法如下，主要目的是配置 `NewtonsoftJson`。
 
 ``` C#
+// ...
+    typeof(AbpSwashbuckleModule),
+    // 配置点：2
+    typeof(TubumuAbpMeetingModule),
+    typeof(AbpAspNetCoreSignalRModule)
+    )]
+public class SampleWebModule : AbpModule
+// ...
+
+```
+
+``` C#
+public override void PreConfigureServices(ServiceConfigurationContext context)
+{
+    context.Services.PreConfigure<AbpMvcDataAnnotationsLocalizationOptions>(options =>
+    {
+        options.AddAssemblyResource(
+            typeof(SampleResource),
+            typeof(SampleDomainModule).Assembly,
+            typeof(SampleDomainSharedModule).Assembly,
+            typeof(SampleApplicationModule).Assembly,
+            typeof(SampleApplicationContractsModule).Assembly,
+            typeof(SampleWebModule).Assembly
+        );
+    });
+
+    // 配置点：3
+    context.Services.PreConfigure<AbpJsonOptions>(options =>
+    {
+        options.UseHybridSerializer = false;
+    });
+}
+```
+
+``` C#
 public override void ConfigureServices(ServiceConfigurationContext context)
 {
     var hostingEnvironment = context.Services.GetHostingEnvironment();
@@ -46,7 +81,7 @@ public override void ConfigureServices(ServiceConfigurationContext context)
     ConfigureNavigationServices();
     ConfigureAutoApiControllers();
     ConfigureSwaggerServices(context.Services);
-    // 配置点：2
+    // 配置点：4
     ConfigureMeeting(context);
 
 }
