@@ -66,3 +66,7 @@ private void ConfigureMeeting(ServiceConfigurationContext context)
     });
 }
 ```
+
+## 三、截图
+
+[Screenshots](https://github.com/albyho/Tubumu.Abp.Meeting/blob/main/Screenshots.md)
