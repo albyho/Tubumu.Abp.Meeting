@@ -1,6 +1,6 @@
 # Tubumu.Abp.Meeting
 
-基于 Mediasoup 和 Abp 的视频会议系统。
+基于 Mediasoup 的 Abp vNext 的视频会议模块。
 
 ## 一、安装模块
 
@@ -9,8 +9,8 @@
 ## 二、配置
 
 1. 将 `mediasoupsettings.json` 配置文件复制到 Web 项目。
-2. 在 `mediasoupsettings.json` 配置文件中的 `AnnouncedIp` 修改为本地局域的 IP。
-3. 修改 `Program.cs` 的 `CreateHostBuilder` 方法如下。
+2. 将 `mediasoupsettings.json` 配置文件中的 `AnnouncedIp` 修改为本机在本地局域的 IP。
+3. 修改 `Program.cs` 的 `CreateHostBuilder` 方法如下，用于加载配置。
 
 ``` C#
 internal static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -29,7 +29,7 @@ internal static IHostBuilder CreateHostBuilder(string[] args) =>
         .UseSerilog();
 ```
 
-4. 修改 `XXXWebModule.cs` 的 `ConfigureServices` 方法如下。
+4. 修改 `XXXWebModule.cs` 的 `ConfigureServices` 方法如下，主要目的是配置 `NewtonsoftJson`。
 
 ``` C#
 public override void ConfigureServices(ServiceConfigurationContext context)
