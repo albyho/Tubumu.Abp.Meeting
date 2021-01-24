@@ -9,7 +9,7 @@
 ## 二、配置
 
 1. 将 `mediasoupsettings.json` 配置文件复制到 Web 项目。
-2. 将 `mediasoupsettings.json` 配置文件中的 `AnnouncedIp` 修改为本机在本地局域的 IP。
+2. 将 `mediasoupsettings.json` 配置文件中的 `AnnouncedIp` 修改为本机在局域网的 IP。
 3. 修改 `Program.cs` 的 `CreateHostBuilder` 方法如下，用于加载配置。
 
 ``` C#
