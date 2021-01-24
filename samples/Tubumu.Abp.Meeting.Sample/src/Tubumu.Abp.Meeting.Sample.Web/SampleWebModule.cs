@@ -58,6 +58,7 @@ namespace Tubumu.Abp.Meeting.Sample.Web
         typeof(AbpTenantManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule),
         typeof(AbpSwashbuckleModule),
+        // 配置点：2
         typeof(TubumuAbpMeetingModule),
         typeof(AbpAspNetCoreSignalRModule)
         )]
@@ -77,7 +78,7 @@ namespace Tubumu.Abp.Meeting.Sample.Web
                 );
             });
 
-            // 配置点：2
+            // 配置点：3
             context.Services.PreConfigure<AbpJsonOptions>(options =>
             {
                 options.UseHybridSerializer = false;
@@ -98,7 +99,7 @@ namespace Tubumu.Abp.Meeting.Sample.Web
             ConfigureNavigationServices();
             ConfigureAutoApiControllers();
             ConfigureSwaggerServices(context.Services);
-            // 配置点：3
+            // 配置点：4
             ConfigureMeeting(context);
         }
 
