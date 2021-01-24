@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29001.49
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{649A3FFA-182F-4E56-9717-E6A9A2BEC545}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tubumu.Abp.Meeting", "src\Tubumu.Abp.Meeting\Tubumu.Abp.Meeting.csproj", "{DFDA3DBD-1CAA-4E1A-8E86-5DFC546CDE34}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFDA3DBD-1CAA-4E1A-8E86-5DFC546CDE34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFDA3DBD-1CAA-4E1A-8E86-5DFC546CDE34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFDA3DBD-1CAA-4E1A-8E86-5DFC546CDE34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFDA3DBD-1CAA-4E1A-8E86-5DFC546CDE34}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DFDA3DBD-1CAA-4E1A-8E86-5DFC546CDE34} = {649A3FFA-182F-4E56-9717-E6A9A2BEC545}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4324B3B4-B60B-4E3C-91D8-59576B4E26DD}
+	EndGlobalSection
+EndGlobal

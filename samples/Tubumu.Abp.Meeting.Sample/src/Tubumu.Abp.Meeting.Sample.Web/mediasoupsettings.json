@@ -1,0 +1,106 @@
+{
+  "MediasoupStartupSettings": {
+    "MediasoupVersion": "3.6.31",
+    //"WorkerPath": "C:\\worker\\Release\\mediasoup-worker",
+    //"WorkerPath": "/Users/alby/Developer/OpenSource/Meeting/mediasoup/worker/out/Release/mediasoup-worker",
+    "WorkerPath": "/Users/alby/Library/Developer/Xcode/DerivedData/mediasoup-worker-cqgehmiqutauwddqhmqzanqfeefl/Build/Products/Debug/mediasoup-worker",
+    "NumberOfWorkers": 1
+  },
+  "MediasoupSettings": {
+    "WorkerSettings": {
+      "LogLevel": "debug",
+      "LogTags": [
+        "info",
+        "ice",
+        "dtls",
+        "rtp",
+        "srtp",
+        "rtcp",
+        "rtx",
+        "bwe",
+        "score",
+        "simulcast",
+        "svc",
+        "sctp",
+        "message"
+      ],
+      "RtcMinPort": 20000,
+      "RtcMaxPort": 29999
+    },
+    "RouterSettings": {
+      "RtpCodecCapabilities": [
+        {
+          "Kind": "audio",
+          "MimeType": "audio/opus",
+          "ClockRate": 48000,
+          "Channels": 2
+        },
+        {
+          "Kind": "audio",
+          "MimeType": "audio/PCMA",
+          "ClockRate": 8000,
+          "Channels": 1
+        },
+        {
+          "Kind": "video",
+          "MimeType": "video/VP8",
+          "ClockRate": 90000,
+          "Parameters": {
+            "x-google-start-bitrate": 1000
+          }
+        },
+        {
+          "Kind": "video",
+          "MimeType": "video/VP9",
+          "ClockRate": 90000,
+          "Parameters": {
+            "profile-id": 2,
+            "x-google-start-bitrate": 1000
+          }
+        },
+        {
+          "Kind": "video",
+          "MimeType": "video/h264",
+          "ClockRate": 90000,
+          "Parameters": {
+            "packetization-mode": 1,
+            "profile-level-id": "4d0032",
+            "level-asymmetry-allowed": 1,
+            "x-google-start-bitrate": 1000
+          }
+        },
+        {
+          "Kind": "video",
+          "MimeType": "video/h264",
+          "ClockRate": 90000,
+          "Parameters": {
+            "packetization-mode": 1,
+            "profile-level-id": "42e01f",
+            "level-asymmetry-allowed": 1,
+            "x-google-start-bitrate": 1000
+          }
+        }
+      ]
+    },
+    "WebRtcTransportSettings": {
+      "ListenIps": [
+        {
+          "Ip": "0.0.0.0",
+          "AnnouncedIp": "192.168.1.5"
+        }
+      ],
+      "InitialAvailableOutgoingBitrate": 1000000,
+      "MinimumAvailableOutgoingBitrate": 600000,
+      "MaxSctpMessageSize": 262144,
+      // Additional options that are not part of WebRtcTransportOptions.
+      "MaximumIncomingBitrate": 1500000
+    },
+    "PlainTransportSettings": {
+      "ListenIp": {
+        "Ip": "0.0.0.0",
+        "AnnouncedIp": "192.168.1.5"
+      },
+      "MaxSctpMessageSize": 262144
+    }
+  }
+}
