@@ -47,7 +47,7 @@ namespace Tubumu.Abp.Meeting.Sample.Web
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    // 配置点：1
+                    // 配置点：2
                     var configs = new ConfigurationBuilder()
                     .AddJsonFile("mediasoupsettings.json", optional: false)
                     .Build();

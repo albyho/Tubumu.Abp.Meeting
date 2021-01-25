@@ -5,44 +5,31 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Tubumu.Abp.Meeting.Sample.EntityFrameworkCore;
 using Tubumu.Abp.Meeting.Sample.Localization;
 using Tubumu.Abp.Meeting.Sample.MultiTenancy;
 using Tubumu.Abp.Meeting.Sample.Web.Menus;
-using Microsoft.OpenApi.Models;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Authentication.JwtBearer;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.Localization;
-using Volo.Abp.AspNetCore.Mvc.UI;
-using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
-using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
 using Volo.Abp.AutoMapper;
-using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity.Web;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
-using Volo.Abp.PermissionManagement.Web;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.TenantManagement.Web;
-using Volo.Abp.UI.Navigation.Urls;
-using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
+using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.VirtualFileSystem;
-using Volo.Abp.AspNetCore.SignalR;
-using Tubumu.Meeting.Server;
-using Volo.Abp.Json;
-using Volo.Abp.Json.Newtonsoft;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using Tubumu.Core.Json;
 
 namespace Tubumu.Abp.Meeting.Sample.Web
 {
@@ -58,10 +45,9 @@ namespace Tubumu.Abp.Meeting.Sample.Web
         typeof(AbpTenantManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule),
         typeof(AbpSwashbuckleModule),
-        // 配置点：2
-        typeof(TubumuAbpMeetingModule),
-        typeof(AbpAspNetCoreSignalRModule)
-        )]
+        // 配置点：1
+        typeof(TubumuAbpMeetingModule)
+    )]
     public class SampleWebModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
@@ -76,12 +62,6 @@ namespace Tubumu.Abp.Meeting.Sample.Web
                     typeof(SampleApplicationContractsModule).Assembly,
                     typeof(SampleWebModule).Assembly
                 );
-            });
-
-            // 配置点：3
-            context.Services.PreConfigure<AbpJsonOptions>(options =>
-            {
-                options.UseHybridSerializer = false;
             });
         }
 
@@ -99,31 +79,6 @@ namespace Tubumu.Abp.Meeting.Sample.Web
             ConfigureNavigationServices();
             ConfigureAutoApiControllers();
             ConfigureSwaggerServices(context.Services);
-            // 配置点：4
-            ConfigureMeeting(context);
-        }
-
-        private void ConfigureMeeting(ServiceConfigurationContext context)
-        {
-            // TODO: (alby)使用 System.Text.Json
-            // Json 枚举处理
-            /*
-            context.Services.AddTransient<Tubumu.Core.Json.EnumStringValueConverter>();
-            Configure<AbpNewtonsoftJsonSerializerOptions>(options =>
-            {
-                options.Converters.Add<Tubumu.Core.Json.EnumStringValueConverter>();
-            });
-            */
-            context.Services.AddSignalR(options =>
-            {
-                options.EnableDetailedErrors = true;
-            })
-            .AddNewtonsoftJsonProtocol(options =>
-            {
-                var settings = options.PayloadSerializerSettings;
-                settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                settings.Converters = new JsonConverter[] { new EnumStringValueConverter() };
-            });
         }
 
         private void ConfigureUrls(IConfiguration configuration)

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -9,10 +10,14 @@ using Tubumu.Core.Extensions;
 using Tubumu.Mediasoup;
 using Tubumu.Meeting.Server;
 using Volo.Abp;
+using Volo.Abp.AspNetCore.SignalR;
 using Volo.Abp.Modularity;
 
 namespace Tubumu.Abp.Meeting
 {
+    [DependsOn(
+        typeof(AbpAspNetCoreSignalRModule)
+    )]
     public class TubumuAbpMeetingModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
@@ -84,6 +89,16 @@ namespace Tubumu.Abp.Meeting
                     options.MediasoupSettings.PlainTransportSettings.ListenIp = plainTransportSettings.ListenIp;
                     options.MediasoupSettings.PlainTransportSettings.MaxSctpMessageSize = plainTransportSettings.MaxSctpMessageSize;
                 }
+            });
+
+            // SignalR
+            context.Services.AddSignalR(options =>
+            {
+                options.EnableDetailedErrors = true;
+            })
+            .AddJsonProtocol(options => {
+                options.PayloadSerializerOptions.Converters.Add(new JsonStringEnumMemberConverter());
+                options.PayloadSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
             });
         }
 

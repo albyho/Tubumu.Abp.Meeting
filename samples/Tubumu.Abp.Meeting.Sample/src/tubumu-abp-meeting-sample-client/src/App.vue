@@ -286,7 +286,7 @@ export default {
         return;
       }
       let result = await this.connection.invoke('JoinRoom', {
-        roomId: this.roomForm.roomId
+        roomId: this.roomForm.roomId.toString()
       });
       if (result.code !== 200) {
         logger.error('onJoinRoom() | JoinRoom failure.');
