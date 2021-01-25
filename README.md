@@ -42,7 +42,7 @@ internal static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ## 三、Web 前端
 
-Sample 的前端项目的源码位于 `samples/Tubumu.Abp.Meeting.Sample/src/tubumu-abp-meeting-sample-client` 。
+Sample 的前端项目的源码是 [tubumu-abp-meeting-sample-client](https://github.com/albyho/Tubumu.Abp.Meeting/tree/main/samples/Tubumu.Abp.Meeting.Sample/src/tubumu-abp-meeting-sample-client)。该项目使用 `Vue` 开发。
 
 ## 四、截图
 
