@@ -1,6 +1,6 @@
 # Tubumu.Abp.Meeting
 
-基于 Mediasoup 的 Abp vNext 的视频会议模块。
+基于 [Mediasoup](https://github.com/versatica/mediasoup) 的 [Abp](https://www.abp.io/) vNext 视频会议模块。
 
 ## 一、安装模块
 
@@ -19,8 +19,35 @@ public class SampleWebModule : AbpModule
 
 ## 二、配置
 
-1. 将 `mediasoupsettings.json` 配置文件复制到 Web 项目。
-2. 将 `mediasoupsettings.json` 配置文件中的 `AnnouncedIp` 修改为本机在局域网的 IP。
+1. 将 Sample 的 Web 项目中的 `mediasoupsettings.json` 配置文件复制到新建的 Abp 解决方案的 Web 项目中。
+2. 打开 `mediasoupsettings.json` 配置文件，搜索 `AnnouncedIp` 键将值修改为本机在局域网中的 IP。
+
+``` json
+// ...
+    "WebRtcTransportSettings": {
+      "ListenIps": [
+        {
+          "Ip": "0.0.0.0",
+          "AnnouncedIp": "192.168.1.5" // 修改为本机在在局域网中的 IP 。
+        }
+      ],
+      "InitialAvailableOutgoingBitrate": 1000000,
+      "MinimumAvailableOutgoingBitrate": 600000,
+      "MaxSctpMessageSize": 262144,
+      // Additional options that are not part of WebRtcTransportOptions.
+      "MaximumIncomingBitrate": 1500000
+    },
+    // 用于 FFmpeg 推流
+    "PlainTransportSettings": {
+      "ListenIp": {
+        "Ip": "0.0.0.0",
+        "AnnouncedIp": "192.168.1.5" // 修改为本机在在局域网中的 IP 。
+      },
+      "MaxSctpMessageSize": 262144
+    }
+// ...
+```
+
 3. 修改 `Program.cs` 的 `CreateHostBuilder` 方法如下，用于加载配置。
 
 ``` C#
