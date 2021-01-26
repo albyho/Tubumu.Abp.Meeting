@@ -2,9 +2,28 @@
 
 基于 [Mediasoup](https://github.com/versatica/mediasoup) 的 [Abp](https://www.abp.io/) vNext 视频会议模块。
 
-## 一、安装模块
+## 一、安装
 
-创建 Abp 项目后，通过常规方式安装 [Tubumu.Abp.Meeting](https://github.com/albyho/Tubumu.Abp.Meeting) 模块。
+### 1、创建项目
+
+``` shell
+# 当前目录：任意
+mkdir Sample && cd Sample
+abp new Sample
+```
+
+### 2、安装 Tubumu.Abp.Meeting 模块
+
+使用 Abp CLI 安装:
+
+``` shell
+# 当前目录：Sample
+cd src/Sample.Web
+# 当前目录：Sample/src/Sample.Web
+abp add-package Tubumu.Abp.Meeting
+```
+
+或者手工安装，在 Nuget 搜索 [Tubumu.Abp.Meeting](https://www.nuget.org/packages/Tubumu.Abp.Meeting/) 并安装，然后修改 `SampleWebAbpModule`:
 
 ``` C#
 // ...
@@ -16,10 +35,16 @@ public class SampleWebModule : AbpModule
 // ...
 ```
 
-## 二、配置
+### 3、下载配置文件及修改 IP
 
-1. 将 Sample 的 Web 项目中的 [mediasoupsettings.json](https://github.com/albyho/Tubumu.Abp.Meeting/blob/main/samples/Tubumu.Abp.Meeting.Sample/src/Tubumu.Abp.Meeting.Sample.Web/mediasoupsettings.json) 配置文件复制到新建的 Abp 解决方案的 Web 项目中。
-2. 打开 `mediasoupsettings.json` 配置文件，搜索 `AnnouncedIp` 键将值修改为本机在局域网中的 IP。
+将 [mediasoupsettings.json](https://raw.githubusercontent.com/albyho/Tubumu.Abp.Meeting/main/samples/Tubumu.Abp.Meeting.Sample/src/Tubumu.Abp.Meeting.Sample.Web/mediasoupsettings.json) 配置文件下载到 `Sample.Web` 项目中。
+
+``` shell
+# 当前目录：Sample/src/Sample.Web
+curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.Abp.Meeting/main/samples/Tubumu.Abp.Meeting.Sample/src/Tubumu.Abp.Meeting.Sample.Web/mediasoupsettings.json
+```
+
+打开 `mediasoupsettings.json` 配置文件，搜索 `AnnouncedIp` 键将值修改为本机在局域网中的 IP。
 
 ``` json
 // ...
@@ -47,10 +72,14 @@ public class SampleWebModule : AbpModule
 // ...
 ```
 
-## 三、Web 前端
+### 4、Web 前端
 
-Sample 的前端项目的源码是 [tubumu-abp-meeting-sample-client](https://github.com/albyho/Tubumu.Abp.Meeting/tree/main/samples/Tubumu.Abp.Meeting.Sample/src/tubumu-abp-meeting-sample-client)。该项目使用 `Vue` 开发。
+可将 Sample 的前端项目的源码是 [tubumu-abp-meeting-sample-client](https://github.com/albyho/Tubumu.Abp.Meeting/tree/main/samples/Tubumu.Abp.Meeting.Sample/src/tubumu-abp-meeting-sample-client) 编译并复制到 Sample.Web 项目的 wwwroot 目录下。
 
-## 四、截图
+### 5、新增菜单
+
+菜单连接至 Web 前端的首页。
+
+## 二、截图
 
 [Screenshots](https://github.com/albyho/Tubumu.Abp.Meeting/blob/main/Screenshots.md)

@@ -4,10 +4,19 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        
         <PackageId>Tubumu.Abp.Meeting</PackageId>
         <Version>0.0.6</Version>
         <Authors>Alby</Authors>
         <Company>Tubumu</Company>
+        <PackageDescription><PackageDescription/>
+        <PackageProjectUrl></PackageProjectUrl>
+        <PackageLicenseUrl></PackageLicenseUrl>
+        <PackageTags>Mediasoup;Meeting</PackageTags>
+
+        <RepositoryUrl>https://github.com/albyho/Tubumu.Abp.Meeting</RepositoryUrl> 
+        <RepositoryType>git</RepositoryType>
+
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
