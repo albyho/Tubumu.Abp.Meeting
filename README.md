@@ -80,10 +80,18 @@ curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.A
 
 菜单连接至 Web 前端的首页。
 
-## 二、录屏
+## 二、启动
+
+1. 将 Sample.Web 设为启动项进行启动。
+
+2. 打开一个或多个浏览器登录。如果是局域网还可以通过其他电脑或手机访问。
+
+3. 访问会议页面。操作流程请参考录屏和截图。
+
+## 三、录屏
 
 ![](https://github.com/albyho/Tubumu.Abp.Meeting/raw/main/art/ScreenCAP01.gif)
 
-## 三、截图
+## 四、截图
 
 [Screenshots](https://github.com/albyho/Tubumu.Abp.Meeting/blob/main/Screenshots.md)
