@@ -1,5 +1,7 @@
 # Tubumu.Abp.Meeting
 
+[![NuGet](https://img.shields.io/nuget/v/Tubumu.Abp.Meeting.svg)](https://www.nuget.org/packages/Tubumu.Abp.Meeting)
+
 基于 [Mediasoup](https://github.com/versatica/mediasoup) 的 [Abp](https://www.abp.io/) vNext 视频会议模块。
 
 ## 一、安装
