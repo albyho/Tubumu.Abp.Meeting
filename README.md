@@ -78,6 +78,14 @@ curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.A
 
 可将 Sample 的前端项目的源码是 [tubumu-abp-meeting-sample-client](https://github.com/albyho/Tubumu.Abp.Meeting/tree/main/samples/Tubumu.Abp.Meeting.Sample/src/tubumu-abp-meeting-sample-client) 编译并复制到 Sample.Web 项目的 wwwroot 目录下。比如：`Sample/src/Sample.Web/wwwroot/meeting` 目录。
 
+``` shell
+# 当前目录：tubumu-abp-meeting-sample-client
+yarn build
+cp -R ./dist/* xxxx/Sample.Web/meeting
+```
+
+> 注意：如有必要，请修改 `index.html` 文件中的 `css` 和 `js` 的路径。
+
 ### 5、新增菜单
 
 菜单链接至 Web 前端的首页。
