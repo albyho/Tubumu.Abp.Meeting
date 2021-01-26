@@ -18,7 +18,7 @@ public class SampleWebModule : AbpModule
 
 ## 二、配置
 
-1. 将 Sample 的 Web 项目中的 `mediasoupsettings.json` 配置文件复制到新建的 Abp 解决方案的 Web 项目中。
+1. 将 Sample 的 Web 项目中的 [mediasoupsettings.json](https://github.com/albyho/Tubumu.Abp.Meeting/blob/main/samples/Tubumu.Abp.Meeting.Sample/src/Tubumu.Abp.Meeting.Sample.Web/mediasoupsettings.json) 配置文件复制到新建的 Abp 解决方案的 Web 项目中。
 2. 打开 `mediasoupsettings.json` 配置文件，搜索 `AnnouncedIp` 键将值修改为本机在局域网中的 IP。
 
 ``` json
