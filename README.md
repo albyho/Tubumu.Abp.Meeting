@@ -26,6 +26,7 @@ abp add-package Tubumu.Abp.Meeting
 或者手工安装，在 Nuget 搜索 [Tubumu.Abp.Meeting](https://www.nuget.org/packages/Tubumu.Abp.Meeting/) 并安装，然后修改 `SampleWebAbpModule`:
 
 ``` C#
+// File: Sample/src/Sample.Web/SampleWebModule.cs
 // ...
     typeof(AbpSwashbuckleModule),
     // 配置点：1
@@ -47,6 +48,7 @@ curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.A
 打开 `mediasoupsettings.json` 配置文件，搜索 `AnnouncedIp` 键将值修改为本机在局域网中的 IP 或者公网 IP。
 
 ``` json
+// File: Sample/src/Sample.Web/mediasoupsettings.json
 // ...
     "WebRtcTransportSettings": {
       "ListenIps": [
@@ -78,7 +80,39 @@ curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.A
 
 ### 5、新增菜单
 
-菜单链接接至 Web 前端的首页。
+菜单链接至 Web 前端的首页。
+
+``` C#
+// File: Sample/src/Sample.Web/Menus/SampleMenus.cs
+public class SampleMenus
+{
+    private const string Prefix = "Sample";
+    public const string Home = Prefix + ".Home";
+
+    //Add your menu items here...
+
+    // `Meeting` menu item
+    public const string Meeting = Prefix + ".Meeting";
+}
+```
+
+``` C#
+// File: Sample/src/Sample.Web/Menus/SampleMenuContributor.cs
+private async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
+{
+    if (!MultiTenancyConsts.IsEnabled)
+    {
+        var administration = context.Menu.GetAdministration();
+        administration.TryRemoveMenuItem(TenantManagementMenuNames.GroupName);
+    }
+
+    var l = context.GetLocalizer<SampleResource>();
+
+    context.Menu.Items.Insert(0, new ApplicationMenuItem(SampleMenus.Home, l["Menu:Home"], "~/"));
+    // `Meeting` menu item
+    context.Menu.Items.Insert(1, new ApplicationMenuItem(SampleMenus.Meeting, "Meeting", "~/meeting/index.html"));
+}
+```
 
 ## 二、启动
 

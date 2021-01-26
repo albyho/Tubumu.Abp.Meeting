@@ -6,7 +6,8 @@
         public const string Home = Prefix + ".Home";
 
         //Add your menu items here...
-        public const string Meeting = Prefix + ".Meeting";
 
+        // `Meeting` menu item
+        public const string Meeting = Prefix + ".Meeting";
     }
 }
