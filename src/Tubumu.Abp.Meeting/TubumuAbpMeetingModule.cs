@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -25,7 +26,7 @@ namespace Tubumu.Abp.Meeting
             // Tubumu.Meeting.Server 不是 AbpModule，故手工注册
             context.Services.AddTransient<MeetingHub>();
 
-            var configuration = context.Services.GetConfiguration();
+            var configuration = BuildConfiguration();
 
             // Mediasoup
             var mediasoupStartupSettings = configuration.GetSection("MediasoupStartupSettings").Get<MediasoupStartupSettings>();
@@ -108,6 +109,15 @@ namespace Tubumu.Abp.Meeting
 
             // Mediasoup
             app.UseMediasoup();
+        }
+
+        private static IConfigurationRoot BuildConfiguration()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("mediasoupsettings.json", optional: false);
+
+            return builder.Build();
         }
     }
 }

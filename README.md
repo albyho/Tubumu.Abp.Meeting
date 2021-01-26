@@ -48,25 +48,6 @@ public class SampleWebModule : AbpModule
 // ...
 ```
 
-3. 修改 `Program.cs` 的 `CreateHostBuilder` 方法如下，用于加载配置。
-
-``` C#
-internal static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            // 配置点：2
-            var configs = new ConfigurationBuilder()
-            .AddJsonFile("mediasoupsettings.json", optional: false)
-            .Build();
-
-            webBuilder.UseConfiguration(configs);
-            webBuilder.UseStartup<Startup>();
-        })
-        .UseAutofac()
-        .UseSerilog();
-```
-
 ## 三、Web 前端
 
 Sample 的前端项目的源码是 [tubumu-abp-meeting-sample-client](https://github.com/albyho/Tubumu.Abp.Meeting/tree/main/samples/Tubumu.Abp.Meeting.Sample/src/tubumu-abp-meeting-sample-client)。该项目使用 `Vue` 开发。
