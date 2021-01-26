@@ -44,7 +44,7 @@ public class SampleWebModule : AbpModule
 curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.Abp.Meeting/main/samples/Tubumu.Abp.Meeting.Sample/src/Tubumu.Abp.Meeting.Sample.Web/mediasoupsettings.json
 ```
 
-打开 `mediasoupsettings.json` 配置文件，搜索 `AnnouncedIp` 键将值修改为本机在局域网中的 IP。
+打开 `mediasoupsettings.json` 配置文件，搜索 `AnnouncedIp` 键将值修改为本机在局域网中的 IP 或者公网 IP。
 
 ``` json
 // ...
@@ -52,7 +52,7 @@ curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.A
       "ListenIps": [
         {
           "Ip": "0.0.0.0",
-          "AnnouncedIp": "192.168.1.5" // 修改为本机在在局域网中的 IP 。
+          "AnnouncedIp": "192.168.1.5" // 修改为本机在在局域网中的 IP  或者公网 IP 。
         }
       ],
       "InitialAvailableOutgoingBitrate": 1000000,
@@ -65,7 +65,7 @@ curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.A
     "PlainTransportSettings": {
       "ListenIp": {
         "Ip": "0.0.0.0",
-        "AnnouncedIp": "192.168.1.5" // 修改为本机在在局域网中的 IP 。
+        "AnnouncedIp": "192.168.1.5" // 修改为本机在在局域网中的 IP  或者公网 IP 。
       },
       "MaxSctpMessageSize": 262144
     }
@@ -78,13 +78,13 @@ curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.A
 
 ### 5、新增菜单
 
-菜单连接至 Web 前端的首页。
+菜单链接接至 Web 前端的首页。
 
 ## 二、启动
 
 1. 将 Sample.Web 设为启动项进行启动。
 
-2. 打开一个或多个浏览器登录。如果是局域网还可以通过其他电脑或手机访问。
+2. 打开一个或多个浏览器并**登录**。如果是局域网或公网还可以通过其他电脑或手机访问。
 
 3. 访问会议页面。操作流程请参考录屏和截图。
 
