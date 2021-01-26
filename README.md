@@ -80,6 +80,10 @@ curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.A
 
 菜单连接至 Web 前端的首页。
 
-## 二、截图
+## 二、录屏
+
+![](https://github.com/albyho/Tubumu.Abp.Meeting/raw/main/art/ScreenCAP01.gif)
+
+## 三、截图
 
 [Screenshots](https://github.com/albyho/Tubumu.Abp.Meeting/blob/main/Screenshots.md)

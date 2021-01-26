@@ -5,7 +5,7 @@
         <el-container>
           <el-aside width="400px">            
             <div class="demo-block">
-              <el-form ref="joinForm" :inline="true" label-width="80px" size="mini">
+              <el-form ref="joinForm" :inline="true" label-width="100px" size="mini">
                 <el-form-item label="Connect:">
                 </el-form-item>
                 <el-form-item>
@@ -14,7 +14,7 @@
               </el-form>
             </div>
             <div class="demo-block" v-if="joinForm.isJoined">
-              <el-form ref="roomForm" :inline="true" :model="roomForm" label-width="80px" size="mini">
+              <el-form ref="roomForm" :inline="true" :model="roomForm" label-width="100px" size="mini">
                 <el-form-item label="Room:">
                   <el-select v-model="roomForm.roomId" :disabled="roomForm.isJoinedRoom" clearable placeholder="请选择">
                     <el-option :label="`Room ${index}`" v-for="(item, index) in rooms" :key="item" :value="index"></el-option>
@@ -26,9 +26,7 @@
               </el-form>
             </div>
             <div class="demo-block" v-if="joinForm.isJoined&&roomForm.isJoinedRoom">
-              <el-form ref="peersForm" :model="peersForm" label-width="80px" size="mini">
-                <el-form-item label="Peers:">
-                </el-form-item>
+              <el-form ref="peersForm" :model="peersForm" label-width="0px" size="mini">
                 <el-form-item>
                   <el-table
                     ref="singleTable"
