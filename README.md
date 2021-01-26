@@ -4,7 +4,7 @@
 
 ## 一、安装模块
 
-创建 Abp 项目后，通过常规方式安装 `Tubumu.Abp.Meeting` 模块。
+创建 Abp 项目后，通过常规方式安装 [Tubumu.Abp.Meeting](https://github.com/albyho/Tubumu.Abp.Meeting) 模块。
 
 ``` C#
 // ...
