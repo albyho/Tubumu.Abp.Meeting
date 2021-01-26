@@ -10,8 +10,7 @@
 // ...
     typeof(AbpSwashbuckleModule),
     // 配置点：1
-    typeof(TubumuAbpMeetingModule),
-    typeof(AbpAspNetCoreSignalRModule)
+    typeof(TubumuAbpMeetingModule)
     )]
 public class SampleWebModule : AbpModule
 // ...
