@@ -1,5 +1,7 @@
 # Tubumu.Abp.Meeting
 
+![](https://github.com/albyho/Tubumu.Abp.Meeting/raw/main/art/ScreenCAP01.gif)
+
 [![NuGet](https://img.shields.io/nuget/v/Tubumu.Abp.Meeting.svg)](https://www.nuget.org/packages/Tubumu.Abp.Meeting)
 
 基于 [Mediasoup](https://github.com/versatica/mediasoup) 的 [Abp](https://www.abp.io/) vNext 视频会议模块。
@@ -130,12 +132,8 @@ private async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
 
 2. 打开浏览器并登录；还可以打开不同的浏览器(Sample使用Cookie认证)使用不同账号登录；如果是局域网或公网还可以通过其他电脑或手机登录。
 
-3. 访问会议页面。操作流程请参考录屏和截图。
+3. 访问会议页面。操作流程请参考截图。
 
-## 三、录屏
-
-![](https://github.com/albyho/Tubumu.Abp.Meeting/raw/main/art/ScreenCAP01.gif)
-
-## 四、截图
+## 三、截图
 
 [Screenshots](https://github.com/albyho/Tubumu.Abp.Meeting/blob/main/Screenshots.md)
