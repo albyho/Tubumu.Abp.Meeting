@@ -78,7 +78,7 @@ curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.A
 
 ### 4、Web 前端
 
-可将 Sample 的前端项目的源码是 [tubumu-abp-meeting-sample-client](https://github.com/albyho/Tubumu.Abp.Meeting/tree/main/samples/Tubumu.Abp.Meeting.Sample/src/tubumu-abp-meeting-sample-client) 编译并复制到 Sample.Web 项目的 wwwroot 目录下。比如：`Sample/src/Sample.Web/wwwroot/meeting` 目录。
+可将 Sample 的前端项目的源码 [tubumu-abp-meeting-sample-client](https://github.com/albyho/Tubumu.Abp.Meeting/tree/main/samples/Tubumu.Abp.Meeting.Sample/src/tubumu-abp-meeting-sample-client) 下载、编译并复制到 Sample.Web 项目的 wwwroot 目录下。比如：`Sample/src/Sample.Web/wwwroot/meeting` 目录。
 
 ``` shell
 # 当前目录：tubumu-abp-meeting-sample-client
@@ -128,7 +128,7 @@ private async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
 
 1. 将 Sample.Web 设为启动项进行启动。
 
-2. 打开一个或多个浏览器并**登录**。如果是局域网或公网还可以通过其他电脑或手机访问。
+2. 打开一个或多个浏览器并**使用不同的账号登录**。如果是局域网或公网还可以通过其他电脑或手机访问。
 
 3. 访问会议页面。操作流程请参考录屏和截图。
 
