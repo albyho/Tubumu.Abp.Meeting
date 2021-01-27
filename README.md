@@ -56,7 +56,7 @@ curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.A
       "ListenIps": [
         {
           "Ip": "0.0.0.0",
-          "AnnouncedIp": "192.168.1.5" // 修改为本机在在局域网中的 IP 或者公网 IP 。
+          "AnnouncedIp": "192.168.1.5" // 修改为本机在局域网中的 IP 或者公网 IP 。
         }
       ],
       "InitialAvailableOutgoingBitrate": 1000000,
@@ -69,7 +69,7 @@ curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.A
     "PlainTransportSettings": {
       "ListenIp": {
         "Ip": "0.0.0.0",
-        "AnnouncedIp": "192.168.1.5" // 修改为本机在在局域网中的 IP 或者公网 IP 。
+        "AnnouncedIp": "192.168.1.5" // 修改为本机在局域网中的 IP 或者公网 IP 。
       },
       "MaxSctpMessageSize": 262144
     }
