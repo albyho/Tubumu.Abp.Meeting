@@ -128,7 +128,7 @@ private async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
 
 1. 将 Sample.Web 设为启动项进行启动。
 
-2. 打开一个或多个浏览器并**使用不同的账号登录**。如果是局域网或公网还可以通过其他电脑或手机访问。
+2. 打开浏览器并登录；还可以打开不同的浏览器(Sample使用Cookie认证)使用不同账号登录；如果是局域网或公网还可以通过其他电脑或手机登录。
 
 3. 访问会议页面。操作流程请参考录屏和截图。
 
