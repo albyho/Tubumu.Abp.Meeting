@@ -6,13 +6,15 @@
         <TargetFramework>net5.0</TargetFramework>
         
         <PackageId>Tubumu.Abp.Meeting</PackageId>
-        <Version>0.0.6</Version>
+        <Version>0.0.7</Version>
+        <Description>An abp module to create meeting app quickly.</Description>
         <Authors>Alby</Authors>
         <Company>Tubumu</Company>
         <PackageDescription></PackageDescription>
-        <PackageProjectUrl></PackageProjectUrl>
-        <PackageLicenseUrl></PackageLicenseUrl>
+        <PackageProjectUrl>https://github.com/albyho/Tubumu.Abp.Meeting</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/albyho/Tubumu.Abp.Meeting/blob/main/LICENSE</PackageLicenseUrl>
         <PackageTags>Mediasoup;Meeting</PackageTags>
+        <PackageReleaseNotes></PackageReleaseNotes>
 
         <RepositoryUrl>https://github.com/albyho/Tubumu.Abp.Meeting</RepositoryUrl> 
         <RepositoryType>git</RepositoryType>

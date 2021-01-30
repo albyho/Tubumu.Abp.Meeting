@@ -29,6 +29,7 @@ namespace Tubumu.Abp.Meeting.Sample.Web.Menus
             var l = context.GetLocalizer<SampleResource>();
 
             context.Menu.Items.Insert(0, new ApplicationMenuItem(SampleMenus.Home, l["Menu:Home"], "~/"));
+            // `Meeting` menu item
             context.Menu.Items.Insert(1, new ApplicationMenuItem(SampleMenus.Meeting, "Meeting", "~/meeting/index.html"));
         }
     }
