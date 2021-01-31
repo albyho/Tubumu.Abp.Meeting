@@ -6,7 +6,6 @@ using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Tubumu.Core.Extensions;
 using Tubumu.Mediasoup;
 using Tubumu.Meeting.Server;
@@ -91,6 +90,9 @@ namespace Tubumu.Abp.Meeting
                     options.MediasoupSettings.PlainTransportSettings.MaxSctpMessageSize = plainTransportSettings.MaxSctpMessageSize;
                 }
             });
+
+            // Meeting server
+            context.Services.AddMeetingServer();
 
             // SignalR
             context.Services.AddSignalR(options =>

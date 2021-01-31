@@ -18,7 +18,7 @@
     <PackageReference Include="HtmlAgilityPack" Version="1.11.30" />
     <ProjectReference Include="..\Tubumu.Abp.Meeting.Sample.Application.Tests\Tubumu.Abp.Meeting.Sample.Application.Tests.csproj" />
     <ProjectReference Include="..\..\src\Tubumu.Abp.Meeting.Sample.Web\Tubumu.Abp.Meeting.Sample.Web.csproj" />
-    <PackageReference Include="Volo.Abp.AspNetCore.TestBase" Version="4.1.2" />
+    <PackageReference Include="Volo.Abp.AspNetCore.TestBase" Version="4.2.0" />
   </ItemGroup>
 
   <ItemGroup>

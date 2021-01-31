@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tubumu.Mediasoup.Common", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tubumu.Mediasoup.Executable", "..\..\..\..\Tubumu.Mediasoup.Executable\Tubumu.Mediasoup.Executable.csproj", "{6E1E123B-2193-487D-BE14-E78257B1B6ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tubumu.Mediasoup.AspNetCore", "..\..\..\..\Tubumu.Mediasoup.AspNetCore\Tubumu.Mediasoup.AspNetCore.csproj", "{C41F139D-3DAA-4D3D-9B40-036C7F3A84C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -151,6 +153,10 @@ Global
 		{6E1E123B-2193-487D-BE14-E78257B1B6ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E1E123B-2193-487D-BE14-E78257B1B6ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E1E123B-2193-487D-BE14-E78257B1B6ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C41F139D-3DAA-4D3D-9B40-036C7F3A84C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C41F139D-3DAA-4D3D-9B40-036C7F3A84C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C41F139D-3DAA-4D3D-9B40-036C7F3A84C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C41F139D-3DAA-4D3D-9B40-036C7F3A84C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -179,6 +185,7 @@ Global
 		{333067C3-FB04-4715-9DC6-0EF95DD8A872} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{84ACF31A-692A-427D-B01B-6D3FC930AA5F} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{6E1E123B-2193-487D-BE14-E78257B1B6ED} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
+		{C41F139D-3DAA-4D3D-9B40-036C7F3A84C7} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}
