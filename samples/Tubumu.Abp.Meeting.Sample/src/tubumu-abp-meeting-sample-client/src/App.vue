@@ -301,8 +301,6 @@ export default {
         // Join成功，CreateSendWebRtcTransport(生产) 
         result = await this.connection.invoke('CreateSendWebRtcTransport', {
           forceTcp: false,
-          producing: true,
-          consuming: false,
           sctpCapabilities: this.form.useDataChannel
 							? this.mediasoupDevice.sctpCapabilities
 							: undefined
@@ -409,8 +407,6 @@ export default {
       // createSendTransport 成功, CreateRecvWebRtcTransport(消费)
       result = await this.connection.invoke('CreateRecvWebRtcTransport', {
         forceTcp: false,
-        producing: false,
-        consuming: true,
         sctpCapabilities: this.form.useDataChannel
 							? this._mediasoupDevice.sctpCapabilities
 							: undefined
