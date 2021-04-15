@@ -138,3 +138,8 @@ private async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
 ## 三、截图
 
 [Screenshots](https://github.com/albyho/Tubumu.Abp.Meeting/blob/main/Screenshots.md)
+
+## 四、交流
+
+### 微信群
+![微信群](https://raw.githubusercontent.com/albyho/Tubumu.Meeting.Demo/dev-07/docs/WeChat-Group.jpg)
