@@ -4,6 +4,7 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <Nullable>enable</Nullable>
 
         <PackageId>Tubumu.Abp.Meeting</PackageId>
         <Version>1.0.1</Version>
