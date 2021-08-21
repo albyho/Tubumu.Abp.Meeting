@@ -5,28 +5,31 @@
         <el-container>
           <el-aside width="400px">            
             <div class="demo-block">
-              <el-form ref="joinForm" :inline="true" label-width="100px" size="mini">
-                <el-form-item label="Connect:">
+              <el-form ref="connectForm" :inline="true" label-width="80px" size="mini">
+                <el-form-item label="Peer:">
+                  <el-select v-model="connectForm.peerId" :disabled="connectForm.isConnected" clearable placeholder="请选择">
+                    <el-option :label="`Peer ${index}`" v-for="(item, index) in accessTokens" :key="item" :value="index"></el-option>
+                  </el-select>
                 </el-form-item>
                 <el-form-item>
-                  <el-button type="primary" @click="onJoin">{{(!joinForm.isJoined ? "Join" : "Leave")}}</el-button>
+                  <el-button type="primary" @click="handleConnect">{{(!connectForm.isConnected ? "Connect" : "Disconnect")}}</el-button>
                 </el-form-item>
               </el-form>
             </div>
-            <div class="demo-block" v-if="joinForm.isJoined">
-              <el-form ref="roomForm" :inline="true" :model="roomForm" label-width="100px" size="mini">
+            <div class="demo-block" v-if="connectForm.isConnected">
+              <el-form ref="roomForm" :inline="true" :model="roomForm" label-width="80px" size="mini">
                 <el-form-item label="Room:">
                   <el-select v-model="roomForm.roomId" :disabled="roomForm.isJoinedRoom" clearable placeholder="请选择">
                     <el-option :label="`Room ${index}`" v-for="(item, index) in rooms" :key="item" :value="index"></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item>
-                  <el-button type="primary" @click="onJoinRoom">{{(!roomForm.isJoinedRoom ? "Join" : "Leave")}}</el-button>
+                  <el-button type="primary" @click="handleJoinRoom">{{(!roomForm.isJoinedRoom ? "Join" : "Leave")}}</el-button>
                 </el-form-item>
               </el-form>
             </div>
-            <div class="demo-block" v-if="joinForm.isJoined&&roomForm.isJoinedRoom">
-              <el-form ref="peersForm" :model="peersForm" label-width="0px" size="mini">
+            <div class="demo-block" v-if="connectForm.isConnected&&roomForm.isJoinedRoom">
+              <el-form ref="peersForm" :model="peersForm" label-width="80px" size="mini">
                 <el-form-item>
                   <el-table
                     ref="singleTable"
@@ -104,8 +107,8 @@ const SCREEN_SHARING_SVC_ENCODINGS =
 
 const logger = new Logger('App');
 
-// 'mediasoup-client:* tubumu-abp-meeting-sample-client:*'
-localStorage.setItem('debug', 'mediasoup-client:* tubumu-abp-meeting-sample-client:*');
+// 'mediasoup-client:* tubumu-meeting-demo-client:*'
+localStorage.setItem('debug', 'mediasoup-client:* tubumu-meeting-demo-client:*');
 
 export default {
   name: 'app',
@@ -131,8 +134,9 @@ export default {
       consumers: new Map(),
       dataProducer: null,
       dataConsumers: new Map(),
-      joinForm: {
-        isJoined: false
+      connectForm: {
+        peerId: null,
+        isConnected: false
       },
       roomForm: {
         roomId: [],
@@ -165,19 +169,28 @@ export default {
     };
   },
   async mounted() {
+    const { peerId, peerid } = querystring.parse(location.search.replace('?', ''));
+    this.connectForm.peerId = peerId || peerid;
+    if(this.connectForm.peerId) {
+      this.connectForm.peerId = parseInt(this.connectForm.peerId);
+    }
+
     const { roomId, roomid } = querystring.parse(location.search.replace('?', ''));
     this.roomForm.roomId = roomId || roomid;
     if(this.roomForm.roomId) {
       this.roomForm.roomId = parseInt(this.roomForm.roomId);
     }
+
+    // For Testing
+    // this.form.produce = this.connectForm.peerId !== '0' && this.connectForm.peerId !== '1';
   },
   methods: {
-    async onJoin() {
-      if(this.joinForm.isJoined) {
+    async handleConnect() {
+      if(this.connectForm.isConnected) {
         if(this.connection) {
          await this.connection.stop();
         }
-        this.joinForm.isJoined = false;
+        this.connectForm.isConnected = false;
         this.roomForm.isJoinedRoom = false;
         this.webcamClosed();
         this.micClosed();
@@ -190,10 +203,10 @@ export default {
         const host = process.env.NODE_ENV === 'production' ? '' : `https://${window.location.hostname}:44393`;
         this.connection = new signalR.HubConnectionBuilder()
           .withUrl(
-            `${host}/signalr-hubs/meeting`, {
-              //accessTokenFactory: () => this.accessTokens[this.joinForm.peerId],
-              //skipNegotiation: true,
-              //transport: signalR.HttpTransportType.WebSockets,
+            `${host}/hubs/meetingHub`, {
+              // accessTokenFactory: () => this.accessTokens[this.connectForm.peerId],
+              // skipNegotiation: true,
+              // transport: signalR.HttpTransportType.WebSockets,
             }
           )
           // .withAutomaticReconnect({
@@ -211,7 +224,9 @@ export default {
           .build();
 
         this.connection.onclose(e => {
-          this.joinForm.isJoined = false;
+          this.connectForm.isConnected = false;
+          this.roomForm.isJoinedRoom = false;
+          this.peersForm.peers = [];
           if(e) {
             logger.error(e)
           }
@@ -222,7 +237,7 @@ export default {
         });
         await this.connection.start();
         await this.start();
-        this.joinForm.isJoined = true;
+        this.connectForm.isConnected = true;
       } catch (e) {
         logger.debug(e.message);
       }
@@ -268,11 +283,11 @@ export default {
         return;
       }
     },
-    async onJoinRoom() {
+    async handleJoinRoom() {
       if(this.roomForm.isJoinedRoom) {
         let result = await this.connection.invoke('LeaveRoom');
         if (result.code !== 200) {
-          logger.error('onJoinRoom() | JoinRoom failure.');
+          logger.error('handleJoinRoom() | JoinRoom failure.');
           return;
         }
         this.peersForm.peers = [];
@@ -280,14 +295,14 @@ export default {
         return;
       } 
       if(!this.roomForm.roomId && this.roomForm.roomId !== 0) {
-        this.$message.error('Join room,please.');
+        this.$message.error('Join room, please.');
         return;
       }
       let result = await this.connection.invoke('JoinRoom', {
         roomId: this.roomForm.roomId.toString()
       });
       if (result.code !== 200) {
-        logger.error('onJoinRoom() | JoinRoom failure.');
+        logger.error('handleJoinRoom() | JoinRoom failure.');
         return;
       }
 
@@ -306,7 +321,7 @@ export default {
 							: undefined
         });
         if (result.code !== 200) {
-          logger.error('onJoinRoom() | CreateSendWebRtcTransport failed: %s', result.message);
+          logger.error('handleJoinRoom() | CreateSendWebRtcTransport failed: %s', result.message);
           return;
         }
 
@@ -337,7 +352,7 @@ export default {
 
         this.sendTransport.on(
           'produce',
-          // appData 需要包含 roomId 和 source
+          // appData 需要包含 source
           // eslint-disable-next-line no-unused-vars
           async ({ kind, rtpParameters, appData }, callback, errback) => {
             logger.debug('sendTransport.on() produce, appData: %o', appData);
@@ -439,10 +454,19 @@ export default {
       this.recvTransport.on('connectionstatechange', connectionState => {
         logger.debug(`recvTransport.on() connectionstatechange: ${connectionState}`);
       });
+
+      await this.enableMic();
+      await this.enableWebcam();
+
+      result = await this.connection.invoke('Ready');
+      if (result.code !== 200) {
+        logger.error('Ready() | Ready failure.');
+        return;
+      }
     },
     async onPeerNodeClick(peer) {
       logger.debug('onPeerNodeClick() | %o', peer);
-      await this.pull(peer.peerId, peer.sources)
+      //await this.pull(peer.peerId, peer.sources)
     },
     async processNewConsumer(data) {
       const {
@@ -854,7 +878,7 @@ export default {
             opusStereo: 1,
             opusDtx: 1
           },
-          appData: { source: 'mic', roomId: '1' }
+          appData: { source: 'mic' }
         });
 
         this.micProducer.on('transportclose', () => {
@@ -972,7 +996,7 @@ export default {
           encodings,
           codecOptions,
           codec,
-          appData: { source: 'webcam', roomId: '1' }
+          appData: { source: 'webcam' }
         });
 
         this.webcamProducer.on('transportclose', () => {

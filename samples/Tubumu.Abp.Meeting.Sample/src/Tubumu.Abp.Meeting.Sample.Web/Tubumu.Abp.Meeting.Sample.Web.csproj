@@ -27,6 +27,8 @@
     <Content Remove="wwwroot\meeting\js\chunk-vendors.377db3f4.js.map" />
     <Content Remove="wwwroot\meeting\fonts\element-icons.535877f5.woff" />
     <Content Remove="wwwroot\meeting\fonts\element-icons.732389de.ttf" />
+    <None Remove="Tubumu.Abp.Meeting" />
+    <None Remove="Tubumu.Mediasoup.Executable" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,12 +48,10 @@
     </PackageReference>
     <PackageReference Include="Volo.Abp.AspNetCore.SignalR" Version="4.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson" Version="5.0.2" />
+    <PackageReference Include="Tubumu.Abp.Meeting" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tubumu.Abp.Meeting.Sample.Application\Tubumu.Abp.Meeting.Sample.Application.csproj" />
-    <ProjectReference Include="..\Tubumu.Abp.Meeting.Sample.HttpApi\Tubumu.Abp.Meeting.Sample.HttpApi.csproj" />
-    <ProjectReference Include="..\Tubumu.Abp.Meeting.Sample.EntityFrameworkCore.DbMigrations\Tubumu.Abp.Meeting.Sample.EntityFrameworkCore.DbMigrations.csproj" />
     <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="4.2.0" />
     <PackageReference Include="Volo.Abp.Autofac" Version="4.2.0" />
     <PackageReference Include="Volo.Abp.Swashbuckle" Version="4.2.0" />
@@ -61,9 +61,17 @@
     <PackageReference Include="Volo.Abp.Account.Web.IdentityServer" Version="4.2.0" />
     <PackageReference Include="Volo.Abp.TenantManagement.Web" Version="4.2.0" />
     <PackageReference Include="Volo.Abp.FeatureManagement.Web" Version="4.2.0" />
-    <ProjectReference Include="..\..\..\..\src\Tubumu.Abp.Meeting\Tubumu.Abp.Meeting.csproj">
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tubumu.Abp.Meeting.Sample.HttpApi\Tubumu.Abp.Meeting.Sample.HttpApi.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\Tubumu.Abp.Meeting.Sample.Application\Tubumu.Abp.Meeting.Sample.Application.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\Tubumu.Abp.Meeting.Sample.EntityFrameworkCore.DbMigrations\Tubumu.Abp.Meeting.Sample.EntityFrameworkCore.DbMigrations.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
-
 </Project>

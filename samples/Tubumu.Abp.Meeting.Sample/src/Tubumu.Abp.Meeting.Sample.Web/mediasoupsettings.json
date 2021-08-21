@@ -84,7 +84,7 @@
       "ListenIps": [
         {
           "Ip": "0.0.0.0",
-          "AnnouncedIp": "192.168.1.3"
+          "AnnouncedIp": null
         }
       ],
       "InitialAvailableOutgoingBitrate": 1000000,
@@ -96,7 +96,7 @@
     "PlainTransportSettings": {
       "ListenIp": {
         "Ip": "0.0.0.0",
-        "AnnouncedIp": "192.168.1.3"
+        "AnnouncedIp": null
       },
       "MaxSctpMessageSize": 262144
     }

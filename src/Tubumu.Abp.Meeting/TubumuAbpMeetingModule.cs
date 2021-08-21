@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Tubumu.Core.Extensions;
+using Tubumu.Core.Extensions.Ip;
 using Tubumu.Mediasoup;
 using Tubumu.Meeting.Server;
 using Volo.Abp;
@@ -83,11 +84,27 @@ namespace Tubumu.Abp.Meeting
                     options.MediasoupSettings.WebRtcTransportSettings.MaxSctpMessageSize = webRtcTransportSettings.MaxSctpMessageSize;
                 }
 
+                // 如果没有设置 AnnouncedIp 则取本机的 IPv4 地址
+                var localIPv4IPAddress = IPAddressExtensions.GetLocalIPv4IPAddress()?.ToString();
+                foreach (var listenIp in options.MediasoupSettings.WebRtcTransportSettings.ListenIps)
+                {
+                    if (string.IsNullOrWhiteSpace(listenIp.AnnouncedIp))
+                    {
+                        listenIp.AnnouncedIp = localIPv4IPAddress;
+                    }
+                }
+
                 // PlainTransportSettings
                 if (plainTransportSettings != null)
                 {
                     options.MediasoupSettings.PlainTransportSettings.ListenIp = plainTransportSettings.ListenIp;
                     options.MediasoupSettings.PlainTransportSettings.MaxSctpMessageSize = plainTransportSettings.MaxSctpMessageSize;
+                }
+
+                // 如果没有设置 AnnouncedIp 则取本机的 IPv4 地址
+                if (string.IsNullOrWhiteSpace(options.MediasoupSettings.PlainTransportSettings.ListenIp.AnnouncedIp))
+                {
+                    options.MediasoupSettings.PlainTransportSettings.ListenIp.AnnouncedIp = localIPv4IPAddress;
                 }
             });
 
