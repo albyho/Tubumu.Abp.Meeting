@@ -7,7 +7,7 @@
         <Nullable>enable</Nullable>
 
         <PackageId>Tubumu.Abp.Meeting</PackageId>
-        <Version>4.0.0</Version>
+        <Version>4.0.1</Version>
         <Description>An abp module to create meeting app quickly.</Description>
         <Authors>Alby</Authors>
         <Company>Tubumu</Company>
@@ -28,12 +28,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Tubumu.Utils" Version="4.0.0" />
-      <PackageReference Include="Tubumu.Mediasoup" Version="4.0.0" />
-      <PackageReference Include="Tubumu.Mediasoup.Common" Version="4.0.0" />
-      <PackageReference Include="Tubumu.Mediasoup.AspNetCore" Version="4.0.0" />
-      <PackageReference Include="Tubumu.Mediasoup.Executable" Version="4.0.0" />
-      <PackageReference Include="Tubumu.Meeting.Server" Version="4.0.0" />
+      <PackageReference Include="Tubumu.Utils" Version="4.0.1" />
+      <PackageReference Include="Tubumu.Mediasoup" Version="4.0.1" />
+      <PackageReference Include="Tubumu.Mediasoup.Common" Version="4.0.1" />
+      <PackageReference Include="Tubumu.Mediasoup.AspNetCore" Version="4.0.1" />
+      <PackageReference Include="Tubumu.Mediasoup.Executable" Version="4.0.1" />
+      <PackageReference Include="Tubumu.Meeting.Server" Version="4.0.1" />
       <PackageReference Include="Volo.Abp.MultiTenancy" Version="4.2.0" />
       <PackageReference Include="Volo.Abp.AspNetCore" Version="4.2.0" />
       <PackageReference Include="Volo.Abp.AspNetCore.SignalR" Version="4.2.0" />
