@@ -43,7 +43,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tubumu.Abp.Meeting", "..\..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tubumu.Meeting.Server", "..\..\..\Tubumu.Meeting.Server\Tubumu.Meeting.Server.csproj", "{129DCE18-4B43-4103-8778-5386F496E737}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tubumu.Core", "..\..\..\Tubumu.Core\Tubumu.Core.csproj", "{6B88FA57-0AC9-4D67-8AF0-5337E7F51B81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tubumu.Utils", "..\..\..\Tubumu.Utils\Tubumu.Utils.csproj", "{6B88FA57-0AC9-4D67-8AF0-5337E7F51B81}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tubumu.Libuv", "..\..\..\Tubumu.Libuv\Tubumu.Libuv.csproj", "{2BAB5907-CDEB-4DE5-9BCD-46EC93983C44}"
 EndProject

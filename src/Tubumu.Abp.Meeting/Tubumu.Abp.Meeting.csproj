@@ -28,7 +28,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Tubumu.Core" Version="4.0.0" />
+      <PackageReference Include="Tubumu.Utils" Version="4.0.0" />
       <PackageReference Include="Tubumu.Mediasoup" Version="4.0.0" />
       <PackageReference Include="Tubumu.Mediasoup.Common" Version="4.0.0" />
       <PackageReference Include="Tubumu.Mediasoup.AspNetCore" Version="4.0.0" />
