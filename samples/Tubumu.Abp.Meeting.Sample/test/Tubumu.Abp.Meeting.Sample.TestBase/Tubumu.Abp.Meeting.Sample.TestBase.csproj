@@ -4,7 +4,6 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <RootNamespace>Tubumu.Abp.Meeting.Sample</RootNamespace>
   </PropertyGroup>
 
