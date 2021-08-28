@@ -48,7 +48,7 @@
     </PackageReference>
     <PackageReference Include="Volo.Abp.AspNetCore.SignalR" Version="4.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson" Version="5.0.2" />
-    <PackageReference Include="Tubumu.Abp.Meeting" Version="3.2.0" />
+    <PackageReference Include="Tubumu.Abp.Meeting" Version="3.2.1" />
   </ItemGroup>
 
   <ItemGroup>
