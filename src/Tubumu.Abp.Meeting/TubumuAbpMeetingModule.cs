@@ -1,15 +1,17 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Tubumu.Utils.Extensions;
-using Tubumu.Utils.Extensions.Ip;
 using Tubumu.Mediasoup;
 using Tubumu.Meeting.Server;
+using Tubumu.Utils.Extensions;
+using Tubumu.Utils.Extensions.Ip;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.SignalR;
 using Volo.Abp.Modularity;
@@ -112,7 +114,7 @@ namespace Tubumu.Abp.Meeting
 
                         foreach (var listenIp in listenIps)
                         {
-                            if(listenIp.AnnouncedIp.IsNullOrWhiteSpace())
+                            if(string.IsNullOrWhiteSpace(listenIp.AnnouncedIp))
                             {
                                 // 如果没有设置 AnnouncedIp：
                                 // 如果 Ip 属性的值不是 Any 则赋值为 Ip 属性的值，否则取本机的任意一个 IPv4 地址进行设置。(注意：可能获取的并不是正确的 IP)
@@ -144,7 +146,7 @@ namespace Tubumu.Abp.Meeting
                         };
                         options.MediasoupSettings.PlainTransportSettings.ListenIp = listenIp;
                     }
-                    else if(listenIp.AnnouncedIp.IsNullOrWhiteSpace())
+                    else if (string.IsNullOrWhiteSpace(listenIp.AnnouncedIp))
                     {
                         // 如果没有设置 AnnouncedIp：
                         // 如果 Ip 属性的值不是 Any 则赋值为 Ip 属性的值，否则取本机的任意一个 IPv4 地址进行设置。(注意：可能获取的并不是正确的 IP)
