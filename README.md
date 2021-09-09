@@ -43,11 +43,11 @@ public class SampleWebModule : AbpModule
 
 ### 3、下载配置文件及修改 IP
 
-将 [mediasoupsettings.json](https://raw.githubusercontent.com/albyho/Tubumu.Abp.Meeting/main/samples/Tubumu.Abp.Meeting.Sample/src/Tubumu.Abp.Meeting.Sample.Web/mediasoupsettings.json) 配置文件下载到 `Sample.Web` 项目中。
+将 [mediasoupsettings.json](https://raw.githubusercontent.com/albyho/Tubumu.Abp.Meeting/main/samples/Sample/src/Sample.Web/mediasoupsettings.json) 配置文件下载到 `Sample.Web` 项目中。
 
 ``` shell
 # 当前目录：Sample/src/Sample.Web
-curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.Abp.Meeting/main/samples/Tubumu.Abp.Meeting.Sample/src/Tubumu.Abp.Meeting.Sample.Web/mediasoupsettings.json
+curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.Abp.Meeting/main/samples/Sample/src/Sample.Web/mediasoupsettings.json
 ```
 
 打开 `mediasoupsettings.json` 配置文件，搜索 `AnnouncedIp` 键将值修改为本机在局域网中的 IP 或者公网 IP。
@@ -59,7 +59,7 @@ curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.A
       "ListenIps": [
         {
           "Ip": "0.0.0.0",
-          "AnnouncedIp": "192.168.1.5" // 修改为本机在局域网中的 IP 或者公网 IP 。
+          "AnnouncedIp": null // 修改为本机在局域网中的 IP 或者公网 IP 。保持为空将使用任意一个 IPv4 地址。
         }
       ],
       "InitialAvailableOutgoingBitrate": 1000000,
@@ -68,11 +68,11 @@ curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.A
       // Additional options that are not part of WebRtcTransportOptions.
       "MaximumIncomingBitrate": 1500000
     },
-    // 用于 FFmpeg 推流
+    // 用于 FFmpeg 推流等
     "PlainTransportSettings": {
       "ListenIp": {
         "Ip": "0.0.0.0",
-        "AnnouncedIp": "192.168.1.5" // 修改为本机在局域网中的 IP 或者公网 IP 。
+        "AnnouncedIp": null // 修改为本机在局域网中的 IP 或者公网 IP 。保持为空将使用任意一个 IPv4 地址。该项目不使用。
       },
       "MaxSctpMessageSize": 262144
     }
@@ -86,7 +86,7 @@ curl -o mediasoupsettings.json https://raw.githubusercontent.com/albyho/Tubumu.A
 ``` shell
 # 当前目录：tubumu-abp-meeting-sample-client
 yarn build
-cp -R ./dist/* xxxx/Sample.Web/meeting
+cp -R ./dist/* ../Sample/src/Sample.Web/meeting
 ```
 
 > 注意：如有必要，请修改 `index.html` 文件中的 `css` 和 `js` 的路径。
@@ -104,6 +104,7 @@ public class SampleMenus
 
     //Add your menu items here...
 
+    // 配置点：2
     // `Meeting` menu item
     public const string Meeting = Prefix + ".Meeting";
 }
@@ -113,17 +114,31 @@ public class SampleMenus
 // File: Sample/src/Sample.Web/Menus/SampleMenuContributor.cs
 private async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
 {
-    if (!MultiTenancyConsts.IsEnabled)
-    {
-        var administration = context.Menu.GetAdministration();
-        administration.TryRemoveMenuItem(TenantManagementMenuNames.GroupName);
-    }
-
+    var administration = context.Menu.GetAdministration();
     var l = context.GetLocalizer<SampleResource>();
 
-    context.Menu.Items.Insert(0, new ApplicationMenuItem(SampleMenus.Home, l["Menu:Home"], "~/"));
-    // `Meeting` menu item
-    context.Menu.Items.Insert(1, new ApplicationMenuItem(SampleMenus.Meeting, "Meeting", "~/meeting/index.html"));
+    context.Menu.Items.Insert(
+        0,
+        new ApplicationMenuItem(
+            SampleMenus.Home,
+            l["Menu:Home"],
+            "~/",
+            icon: "fas fa-home",
+            order: 0
+        )
+    );
+    // 配置点：3
+    context.Menu.Items.Insert(
+        1,
+        new ApplicationMenuItem(
+            SampleMenus.Meeting,
+            l["Menu:Meeting"],
+            "~/meeting/index.html",
+            icon: "fas fa-users",
+            order: 1
+        )
+    );
+    // ... others.
 }
 ```
 

@@ -14,7 +14,7 @@
 ``` shell
 # 当前目录：任意
 mkdir Sample && cd Sample
-abp new Sample
+abp new Sample -dbms SQLite
 ```
 
 ### 2、安装 Tubumu.Abp.Meeting 模块
@@ -104,6 +104,7 @@ public class SampleMenus
 
     //Add your menu items here...
 
+    // 配置点：2
     // `Meeting` menu item
     public const string Meeting = Prefix + ".Meeting";
 }
@@ -113,17 +114,31 @@ public class SampleMenus
 // File: Sample/src/Sample.Web/Menus/SampleMenuContributor.cs
 private async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
 {
-    if (!MultiTenancyConsts.IsEnabled)
-    {
-        var administration = context.Menu.GetAdministration();
-        administration.TryRemoveMenuItem(TenantManagementMenuNames.GroupName);
-    }
-
+    var administration = context.Menu.GetAdministration();
     var l = context.GetLocalizer<SampleResource>();
 
-    context.Menu.Items.Insert(0, new ApplicationMenuItem(SampleMenus.Home, l["Menu:Home"], "~/"));
-    // `Meeting` menu item
-    context.Menu.Items.Insert(1, new ApplicationMenuItem(SampleMenus.Meeting, "Meeting", "~/meeting/index.html"));
+    context.Menu.Items.Insert(
+        0,
+        new ApplicationMenuItem(
+            SampleMenus.Home,
+            l["Menu:Home"],
+            "~/",
+            icon: "fas fa-home",
+            order: 0
+        )
+    );
+    // 配置点：3
+    context.Menu.Items.Insert(
+        1,
+        new ApplicationMenuItem(
+            SampleMenus.Home,
+            l["Menu:Meeting"],
+            "~/meeting/index.html",
+            icon: "fas fa-users",
+            order: 1
+        )
+    );
+    // ...
 }
 ```
 

@@ -25,7 +25,7 @@ namespace Tubumu.Abp.Meeting
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            // Tubumu.Meeting.Server 不是 AbpModule，故手工注册
+            // Tubumu.Meeting.Server 不是 AbpModule，故手工注册。
             context.Services.AddTransient<MeetingHub>();
 
             var configuration = BuildConfiguration();
@@ -156,14 +156,18 @@ namespace Tubumu.Abp.Meeting
             });
 
             // Meeting server
-            context.Services.AddMeetingServer();
+            context.Services.AddMeetingServer(options =>
+            {
+                options.ServeMode = ServeMode.Open;
+            });
 
             // SignalR
             context.Services.AddSignalR(options =>
             {
                 options.EnableDetailedErrors = true;
             })
-            .AddJsonProtocol(options => {
+            .AddJsonProtocol(options =>
+            {
                 options.PayloadSerializerOptions.Converters.Add(new JsonStringEnumMemberConverter());
                 options.PayloadSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
             });
